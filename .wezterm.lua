@@ -37,10 +37,22 @@ config.keys = {
   { key = 'L',  mods = 'CTRL|SHIFT', action = wezterm.action.ActivatePaneDirection 'Right' },
   { key = 'K',  mods = 'CTRL|SHIFT', action = wezterm.action.ActivatePaneDirection 'Up' },
   { key = 'J',  mods = 'CTRL|SHIFT', action = wezterm.action.ActivatePaneDirection 'Down' },
+
+  -- Delete whole word backward (Sends Ctrl+W hex code)
+  { 
+    key = 'Delete', 
+    mods = 'CTRL', 
+    action = wezterm.action.SendString '\x17' 
+  },
+  { 
+    key = 'Backspace', 
+    mods = 'CTRL', 
+    action = wezterm.action.SendString '\x17' 
+  },
 }
 
 -- Launch directly into Ubuntu WSL
-config.default_domain = 'WSL:Ubuntu'
+-- config.default_domain = 'WSL:Ubuntu'
 
 -- Optional: Start in Linux home if needed (rarely required)
 -- config.default_cwd = wezterm.home_dir
