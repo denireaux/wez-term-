@@ -11,3 +11,19 @@ vim.keymap.set("n", "<leader>wq", ":wq<CR>")
 vim.pack.add({ "https://github.com/loctvl842/monokai-pro.nvim" })
 require("monokai-pro").setup({ filter = "octagon" })
 vim.cmd.colorscheme("monokai-pro")
+
+vim.pack.add({
+  "https://github.com/neovim/nvim-lspconfig",
+  "https://github.com/mason-org/mason.nvim",
+  "https://github.com/mason-org/mason-lspconfig.nvim",
+})
+
+require("mason").setup()
+require("mason-lspconfig").setup()
+
+-- autocomplete as you type
+vim.api.nvim_create_autocmd("LspAttach", {
+  callback = function(ev)
+    vim.lsp.completion.enable(true, ev.data.client_id, ev.buf, { autotrigger = true })
+  end,
+})
